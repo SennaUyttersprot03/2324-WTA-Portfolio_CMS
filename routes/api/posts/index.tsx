@@ -24,7 +24,7 @@ export const handler: Handlers<Post> = {
     await kv.set(postKey, post);
 
     return new Response(
-      JSON.stringify({ message: "Post successfully createed", post }),
+      JSON.stringify({ message: "Post successfully created", post }),
       { status: 201 },
     );
   },
