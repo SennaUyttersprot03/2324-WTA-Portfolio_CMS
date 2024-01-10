@@ -1,4 +1,6 @@
 import { type PageProps } from "$fresh/server.ts";
+import Header from "../components/organisms/Header.tsx";
+
 export default function App({ Component }: PageProps) {
   return (
     <html>
@@ -9,7 +11,11 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
       </head>
       <body>
-        <Component />
+        <Header />
+        <main class="pt-8 pb-8 pl-4 pr-4 max-w-screen-2xl m-auto">
+          <Component />
+        </main>
+        <footer class="max-w-screen-2xl m-auto"></footer>
       </body>
     </html>
   );
