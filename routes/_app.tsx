@@ -12,10 +12,12 @@ export default function App({ Component }: PageProps) {
       </head>
       <body>
         <Header />
-        <main class="pt-8 pb-8 pl-4 pr-4 max-w-screen-2xl m-auto">
+        <main class="pt-8 pb-8 pl-4 pr-4 max-w-screen-2xl min-h-screen m-auto">
           <Component />
         </main>
-        <footer class="max-w-screen-2xl m-auto"></footer>
+        <footer class="max-w-screen-2xl m-auto p-4 text-center bg-blue-700 text-white">
+          <p>Portfolio CMS - 2024</p>
+        </footer>
       </body>
     </html>
   );
