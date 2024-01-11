@@ -32,6 +32,9 @@ const addPosts = async (req: Request, ctx: FreshContext) => {
   const postKey = ["post", post.id];
   await kv.set(postKey, post);
 
+  const url = Deno.env.get("JAMSTACK_URL") || "";
+  await fetch(url);
+
   return new Response(
     JSON.stringify({ message: "Post successfully created", post }),
     { status: 201 },
@@ -54,6 +57,10 @@ const postById = async (req: Request, ctx: FreshContext) => {
 const deletePostById = async (req: Request, ctx: FreshContext) => {
   const id = ctx.params.id;
   await kv.delete(["post", Number.parseInt(id)]);
+
+  const url = Deno.env.get("JAMSTACK_URL") || "";
+  await fetch(url);
+
   return new Response(
     JSON.stringify({ message: "Post successfully deleted" }),
   );

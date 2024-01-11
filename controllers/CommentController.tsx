@@ -7,7 +7,18 @@ const kv = await Deno.openKv();
 
 const addComment = async (req: Request, ctx: FreshContext) => {
   const id = ctx.params.id;
-  const body = await req.json();
+  let body;
+
+  try {
+    body = await req.json();
+  } catch (e) {
+    return new Response(
+      JSON.stringify({ message: "An author and message are required" }),
+      {
+        status: 400,
+      },
+    );
+  }
   const errors = validateComment(body);
 
   if (hasErrors(errors)) {
@@ -26,6 +37,9 @@ const addComment = async (req: Request, ctx: FreshContext) => {
 
   const postKey = ["post", post.id];
   await kv.set(postKey, post);
+
+  const url = Deno.env.get("JAMSTACK_URL") || "";
+  await fetch(url);
 
   return new Response(
     JSON.stringify({ message: "Comment successfully added", post }),
