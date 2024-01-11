@@ -1,6 +1,9 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import AppButtonLink from "../../components/atoms/AppButtonLink.tsx";
 import PostCard from "../../components/molecules/PostCard.tsx";
+import Footer from "../../components/organisms/Footer.tsx";
+import Header from "../../components/organisms/Header.tsx";
+import Main from "../../components/organisms/Main.tsx";
 import { getAllPosts } from "../../controllers/PostController.tsx";
 import Post from "../../types/Post.tsx";
 
@@ -18,16 +21,22 @@ export const handler: Handlers = {
 
 export default function PostsPage({ data }: PageProps) {
   return (
-    <div>
-      <div class="flex flex-row justify-between align-middle">
-        <h1 class="text-3xl font-bold">Posts</h1>
-        <AppButtonLink href="/posts/add">New Post</AppButtonLink>
-      </div>
-      <div class="flex flex-row justify-start gap-4 flex-wrap">
-        {data.posts.map((post: Post, index: number) => (
-          <PostCard post={post} key={index} />
-        ))}
-      </div>
-    </div>
+    <>
+      <Header />
+      <Main>
+        <div>
+          <div class="flex flex-row justify-between align-middle">
+            <h1 class="text-3xl font-bold">Posts</h1>
+            <AppButtonLink href="/posts/add">New Post</AppButtonLink>
+          </div>
+          <div class="flex flex-row justify-start gap-4 flex-wrap">
+            {data.posts.map((post: Post, index: number) => (
+              <PostCard post={post} key={index} />
+            ))}
+          </div>
+        </div>
+      </Main>
+      <Footer />
+    </>
   );
 }
