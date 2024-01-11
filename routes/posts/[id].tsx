@@ -1,6 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import AppButton from "../../components/atoms/AppButton.tsx";
 import CommentCard from "../../components/molecules/CommentCard.tsx";
-import { postById } from "../../controllers/PostController.tsx";
+import { deletePostById, postById } from "../../controllers/PostController.tsx";
 import Comment from "../../types/Comment.tsx";
 import Post from "../../types/Post.tsx";
 
@@ -18,14 +19,36 @@ export const handler: Handlers<Post> = {
       return ctx.renderNotFound();
     }
   },
+
+  async POST(_req, ctx) {
+    try {
+      const response = await deletePostById(_req, ctx);
+
+      if (response.ok) {
+        const headers = new Headers();
+        headers.set("location", "/posts");
+        return new Response(null, {
+          status: 302,
+          headers,
+        });
+      }
+      return ctx.renderNotFound();
+    } catch (e) {
+      return ctx.renderNotFound();
+    }
+  },
 };
 
 export default function PostDetailPage({ data }: PageProps) {
-  console.log(data);
   return (
     <div class="max-w-xl m-auto flex flex-col gap-6">
       <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-bold">{data.title}</h1>
+        <div class="flex justify-between gap-4 flex-wrap">
+          <h1 class="text-3xl font-bold">{data.title}</h1>
+          <form method="post">
+            <AppButton type="submit">Delete</AppButton>
+          </form>
+        </div>
         <p class="text-gray-500 text-sm">
           {new Date(data.createdAt).toLocaleString()}
         </p>
