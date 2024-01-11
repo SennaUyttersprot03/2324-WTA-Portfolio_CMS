@@ -18,7 +18,17 @@ const getAllPosts = async (req: Request, ctx: FreshContext) => {
 };
 
 const addPosts = async (req: Request, ctx: FreshContext) => {
-  const body = (await req.json()) as Post;
+  let body;
+  try {
+    body = (await req.json()) as Post;
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ message: "An title and message are required" }),
+      {
+        status: 422,
+      },
+    );
+  }
   const errors = validatePost(body);
 
   if (hasErrors(errors)) {

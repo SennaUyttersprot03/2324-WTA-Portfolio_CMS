@@ -15,7 +15,7 @@ const addComment = async (req: Request, ctx: FreshContext) => {
     return new Response(
       JSON.stringify({ message: "An author and message are required" }),
       {
-        status: 400,
+        status: 422,
       },
     );
   }
