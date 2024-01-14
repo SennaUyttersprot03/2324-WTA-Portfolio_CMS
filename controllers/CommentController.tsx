@@ -38,9 +38,6 @@ const addComment = async (req: Request, ctx: FreshContext) => {
   const postKey = ["post", post.id];
   await kv.set(postKey, post);
 
-  const url = Deno.env.get("JAMSTACK_URL") || "";
-  await fetch(url);
-
   return new Response(
     JSON.stringify({ message: "Comment successfully added", post }),
     { status: 201 },
