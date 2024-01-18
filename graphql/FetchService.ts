@@ -1,4 +1,4 @@
-export async function fetchGraphQL(query: string) {
+async function fetchGraphQL(query: string) {
     const url = Deno.env.get("PORTFOLIO_API") as string
     const response = await fetch(url, {
         method: 'POST',
@@ -12,3 +12,5 @@ export async function fetchGraphQL(query: string) {
     
     return await response.json();
 } 
+
+export { fetchGraphQL };

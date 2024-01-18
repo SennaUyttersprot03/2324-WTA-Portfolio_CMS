@@ -18,7 +18,6 @@ export const handler: Handlers = {
         }
       }`;
       const { data } = await fetchGraphQL(query)
-      console.log(data)
       return _ctx.render(data);
     } catch (error) {
       return _ctx.renderNotFound();
