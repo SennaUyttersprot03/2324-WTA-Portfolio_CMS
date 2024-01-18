@@ -19,7 +19,6 @@ export default function CreatePostForm() {
     title: "",
     message: "",
   });
-  const [apiError, setApiError] = useState<string>("");
 
   // deno-lint-ignore no-explicit-any
   const handleChange = (e: any) => {
@@ -27,28 +26,9 @@ export default function CreatePostForm() {
   };
 
   const handleSubmit = async (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
-    e.preventDefault();
     const isValid = validatePost();
-    if (isValid) {
-      setFormErrors({ title: "", message: "" });
-      try {
-        const response = await fetch("/api/posts", {
-          method: "POST",
-          body: JSON.stringify(formValues),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          const data = await response.json();
-          setApiError(data.message);
-          return;
-        }
-        window.location.href = "/posts";
-      } catch (error) {
-        setApiError("Something went wrong, tyr again later");
-      }
+    if (!isValid) {
+      e.preventDefault();
     }
   };
 
@@ -73,7 +53,6 @@ export default function CreatePostForm() {
       onSubmit={handleSubmit}
       class="flex flex-col gap-4"
     >
-      {apiError && <p class="text-red-600">{apiError}</p>}
       <FormField
         label="Title"
         name="title"

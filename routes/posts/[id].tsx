@@ -24,7 +24,7 @@ export const handler: Handlers<Post> = {
           }
         }
       }`;
-      const { data } = await fetchGraphQL(query)
+      const { data } = await fetchGraphQL(query);
       return ctx.render(data.postById);
     } catch (error) {
       return ctx.renderNotFound();
@@ -37,7 +37,7 @@ export const handler: Handlers<Post> = {
       const mutation = `mutation {
         deletePost(id: ${id})
       }`;
-      const { data } = await fetchGraphQL(mutation)
+      const { data } = await fetchGraphQL(mutation);
 
       if (data.deletePost) {
         const headers = new Headers();
