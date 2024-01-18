@@ -6,7 +6,7 @@ Create your custom portfolio with following projects:
 - [Portfolio_API](https://github.com/SennaUyttersprot03/2324-WTA-Portfolio_API)
 - [Portfolio_JAMSTACK](https://gitlab.com/jente.decamps/2324-wta-portfolio-jamstack)
 
-This is a portfolio API made with GraphQL created for [Portfolio_API](https://github.com/SennaUyttersprot03/2324-WTA-Portfolio_API) & [Portfolio_JAMSTACK](https://gitlab.com/jente.decamps/2324-wta-portfolio-jamstack).
+This is a portfolio CMS made with Fresh created for [Portfolio_API](https://github.com/SennaUyttersprot03/2324-WTA-Portfolio_API) & [Portfolio_JAMSTACK](https://gitlab.com/jente.decamps/2324-wta-portfolio-jamstack).
 
 
 ## Authors
