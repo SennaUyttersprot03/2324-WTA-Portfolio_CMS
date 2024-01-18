@@ -25,7 +25,7 @@ export default function CreatePostForm() {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
+  const handleSubmit = (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
     const isValid = validatePost();
     if (!isValid) {
       e.preventDefault();

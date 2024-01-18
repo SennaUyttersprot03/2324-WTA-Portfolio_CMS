@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Header />
       <Main>
-        <div class="px-4 py-8 mx-auto bg-[#86efac]">
+        <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
             <img
               class="my-6"
@@ -16,11 +16,11 @@ export default function Home() {
               height="128"
               alt="the Fresh logo: a sliced lemon dripping with juice"
             />
-            <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
+            <h1 class="text-4xl font-bold">Welcome to my portfolio CMS</h1>
             <p class="my-4">
-              Try updating this message in the
-              <code class="mx-2">./routes/index.tsx</code> file, and refresh.
+              This is a simple CMS built with Fresh and Tailwind CSS.
             </p>
+            <p>Go to the posts page where you can add an interesting post!</p>
           </div>
         </div>
       </Main>
