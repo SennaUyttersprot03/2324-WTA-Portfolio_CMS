@@ -4,22 +4,29 @@ import PostCard from "../../components/molecules/PostCard.tsx";
 import Footer from "../../components/organisms/Footer.tsx";
 import Header from "../../components/organisms/Header.tsx";
 import Main from "../../components/organisms/Main.tsx";
-import { getAllPosts } from "../../controllers/PostController.tsx";
 import Post from "../../types/Post.tsx";
+import { fetchGraphQL } from "../../graphql/FetchService.ts"
 
 export const handler: Handlers = {
   async GET(_req, _ctx) {
     try {
-      const response = await getAllPosts(_req, _ctx);
-      const posts = await response.json() as Post[];
-      return _ctx.render(posts);
+      const query = `query {
+        posts {
+          id
+          title
+          message
+        }
+      }`;
+      const { data } = await fetchGraphQL(query)
+      console.log(data)
+      return _ctx.render(data);
     } catch (error) {
       return _ctx.renderNotFound();
     }
   },
 };
 
-export default function PostsPage({ data }: PageProps) {
+export default function PostsPage({ data } : PageProps) {
   return (
     <>
       <Header />
